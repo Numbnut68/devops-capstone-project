@@ -12,7 +12,7 @@ from tests.factories import AccountFactory
 from service.common import status  # HTTP Status Codes
 from service.models import db, Account, init_db
 from service.routes import app
-from service import app, talisman
+from service import talisman
 
 DATABASE_URI = os.getenv(
     "DATABASE_URI", "postgresql://postgres:postgres@localhost:5432/postgres"
@@ -215,4 +215,4 @@ class TestAccountService(TestCase):
         """It should return CORS headers"""
         response = self.client.get("/", environ_overrides=HTTPS_ENVIRON)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertEqual(response.headers.get("Access-Control-Allow-Origin"), "*")    
+        self.assertEqual(response.headers.get("Access-Control-Allow-Origin"), "*")
